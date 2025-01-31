@@ -1,26 +1,23 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ProgressBar : MonoBehaviour
+public class ProgressBarController : MonoBehaviour
 {
-    public Slider progressSlider; // Fortschrittsleiste
-    public float changeAmount = 10f; // Wie stark sich die Leiste verändert
+    public Slider progressBar;
 
     void Start()
     {
-        if (progressSlider == null)
-            Debug.LogError("Slider nicht zugewiesen!");
+        if (progressBar == null)
+        {
+            Debug.LogError("Kein Slider-Element zugewiesen!");
+        }
     }
 
-    public void IncreaseProgress()
+    public void ChangeProgress(float amount)
     {
-        progressSlider.value = Mathf.Clamp(progressSlider.value + changeAmount, progressSlider.minValue, progressSlider.maxValue);
-        Debug.Log("Fortschritt erhöht: " + progressSlider.value);
-    }
-
-    public void DecreaseProgress()
-    {
-        progressSlider.value = Mathf.Clamp(progressSlider.value - changeAmount, progressSlider.minValue, progressSlider.maxValue);
-        Debug.Log("Fortschritt verringert: " + progressSlider.value);
+        if (progressBar != null)
+        {
+            progressBar.value = Mathf.Clamp(progressBar.value + amount, progressBar.minValue, progressBar.maxValue);
+        }
     }
 }
