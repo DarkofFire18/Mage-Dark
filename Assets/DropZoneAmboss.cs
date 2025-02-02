@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DropZone : MonoBehaviour, IDropHandler
+public class DropZoneAmboss : MonoBehaviour, IDropHandler
 {
     public float moveSpeed = 5f;
 
@@ -20,13 +20,6 @@ public class DropZone : MonoBehaviour, IDropHandler
                 StartCoroutine(MoveToCenter(draggedRect, dropZoneRect));
             }
 
-            // Falls das Objekt ein MaterialItem ist, setzen wir es als "im Ofen"
-            MaterialItem material = draggedObject.GetComponent<MaterialItem>();
-            if (material != null)
-            {
-                material.SetInOven(true);
-            }
-
             Debug.Log($"{draggedObject.name} wurde in die Ofenzone gelegt!");
         }
     }
@@ -35,7 +28,7 @@ public class DropZone : MonoBehaviour, IDropHandler
     {
         Vector3 startPosition = draggedRect.position;
         Vector3 targetPosition = dropZoneRect.position;
-        targetPosition.y -= 50;
+        targetPosition.y-=50;
         float elapsedTime = 0f;
 
         while (elapsedTime < 1f)
@@ -47,15 +40,5 @@ public class DropZone : MonoBehaviour, IDropHandler
 
         // Am Ziel sicherstellen, dass die Position exakt passt
         draggedRect.position = targetPosition;
-    }
-
-    // Falls das Material den Ofen verlässt, stoppen wir die Erwärmung
-    private void OnTriggerExit(Collider other)
-    {
-        MaterialItem material = other.GetComponent<MaterialItem>();
-        if (material != null)
-        {
-            material.SetInOven(false);
-        }
     }
 }
