@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 public class DropZoneAmboss : MonoBehaviour, IDropHandler
 {
     public float moveSpeed = 5f;
+    public ProgressBarController progressBarController;
 
     public void OnDrop(PointerEventData eventData)
     {
@@ -20,7 +21,21 @@ public class DropZoneAmboss : MonoBehaviour, IDropHandler
                 StartCoroutine(MoveToCenter(draggedRect, dropZoneRect));
             }
 
-            Debug.Log($"{draggedObject.name} wurde in die Ofenzone gelegt!");
+            MaterialItem material = draggedObject.GetComponent<MaterialItem>();
+            if (material != null)
+            {
+                // Entferne das Material aus dem Ofen und markiere es als auf dem Amboss
+                material.SetInOven(false);
+                material.isOnAnvil = true;
+                Debug.Log($"{draggedObject.name} wurde in den Amboss gelegt und aus dem Ofen entfernt!");
+
+                // Setze die Progressbar auf den Wert der Material-Eigenschaft
+                if (progressBarController != null)
+                {
+                    progressBarController.currentMaterial = material;
+                    progressBarController.SetProgress(material.forgingProgress);
+                }
+            }
         }
     }
 
@@ -28,7 +43,7 @@ public class DropZoneAmboss : MonoBehaviour, IDropHandler
     {
         Vector3 startPosition = draggedRect.position;
         Vector3 targetPosition = dropZoneRect.position;
-        targetPosition.y-=50;
+        targetPosition.y -= 50;
         float elapsedTime = 0f;
 
         while (elapsedTime < 1f)
@@ -38,7 +53,6 @@ public class DropZoneAmboss : MonoBehaviour, IDropHandler
             yield return null;
         }
 
-        // Am Ziel sicherstellen, dass die Position exakt passt
         draggedRect.position = targetPosition;
     }
 }

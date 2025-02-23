@@ -10,6 +10,12 @@ public class MaterialItem : MonoBehaviour
     private bool isInOven = false;     // Status, ob Material im Ofen ist
     private bool isMelted = false;     // Falls das Material geschmolzen ist
 
+    // Neue Eigenschaft zum Speichern des Fortschritts
+    public float forgingProgress = 0f;
+
+    // Neue Eigenschaft, ob das Material auf dem Amboss liegt
+    public bool isOnAnvil = false;
+
     void Update()
     {
         if (isMelted) return; // Falls das Material bereits geschmolzen ist, nichts mehr tun
@@ -40,7 +46,6 @@ public class MaterialItem : MonoBehaviour
     public void CoolDown(float amount)
     {
         heatLevel = Mathf.Clamp(heatLevel - amount, 0, maxHeat);
-        Debug.Log($"{materialName} kühlt ab: {heatLevel}°C");
     }
 
     public void SetInOven(bool inOven)
@@ -52,8 +57,6 @@ public class MaterialItem : MonoBehaviour
     {
         isMelted = true;
         Debug.Log($"{materialName} ist geschmolzen!");
-
-        // Hier könntest du das Material zerstören oder eine Transformation auslösen
         Destroy(gameObject); // Entfernt das Material aus der Szene
     }
 }

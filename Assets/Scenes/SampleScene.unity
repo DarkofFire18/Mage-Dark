@@ -204,7 +204,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1633671037}
         m_TargetAssemblyTypeName: ProgressBarController, Assembly-CSharp
-        m_MethodName: ChangeProgress
+        m_MethodName: IncreaseProgress
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1125,7 +1125,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1633671037}
         m_TargetAssemblyTypeName: ProgressBarController, Assembly-CSharp
-        m_MethodName: ChangeProgress
+        m_MethodName: IncreaseProgress
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1258,7 +1258,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1633671037}
         m_TargetAssemblyTypeName: ProgressBarController, Assembly-CSharp
-        m_MethodName: ChangeProgress
+        m_MethodName: IncreaseProgress
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1611,7 +1611,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1633671037}
         m_TargetAssemblyTypeName: ProgressBarController, Assembly-CSharp
-        m_MethodName: ChangeProgress
+        m_MethodName: IncreaseProgress
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1744,13 +1744,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1633671037}
         m_TargetAssemblyTypeName: ProgressBarController, Assembly-CSharp
-        m_MethodName: ChangeProgress
+        m_MethodName: DecreaseProgress
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: -2
+          m_FloatArgument: 2
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -1877,7 +1877,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1633671037}
         m_TargetAssemblyTypeName: ProgressBarController, Assembly-CSharp
-        m_MethodName: ChangeProgress
+        m_MethodName: IncreaseProgress
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2010,13 +2010,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1633671037}
         m_TargetAssemblyTypeName: ProgressBarController, Assembly-CSharp
-        m_MethodName: ChangeProgress
+        m_MethodName: DecreaseProgress
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: -100
+          m_FloatArgument: 100
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -2177,6 +2177,8 @@ MonoBehaviour:
   maxHeat: 100
   heatIncreaseRate: 5
   coolDownRate: 2
+  forgingProgress: 0
+  isOnAnvil: 0
 --- !u!1 &1046617614
 GameObject:
   m_ObjectHideFlags: 0
@@ -2856,13 +2858,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1633671037}
         m_TargetAssemblyTypeName: ProgressBarController, Assembly-CSharp
-        m_MethodName: ChangeProgress
+        m_MethodName: DecreaseProgress
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: -5
+          m_FloatArgument: 5
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -3171,7 +3173,7 @@ GameObject:
   - component: {fileID: 1633671038}
   - component: {fileID: 1633671037}
   m_Layer: 0
-  m_Name: ProgressBarManager
+  m_Name: ProgressBarController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3190,6 +3192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   progressBar: {fileID: 9762021}
+  currentMaterial: {fileID: 0}
 --- !u!4 &1633671038
 Transform:
   m_ObjectHideFlags: 0
@@ -3365,13 +3368,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1633671037}
         m_TargetAssemblyTypeName: ProgressBarController, Assembly-CSharp
-        m_MethodName: ChangeProgress
+        m_MethodName: DecreaseProgress
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: -20
+          m_FloatArgument: 20
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -3498,7 +3501,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1633671037}
         m_TargetAssemblyTypeName: ProgressBarController, Assembly-CSharp
-        m_MethodName: ChangeProgress
+        m_MethodName: IncreaseProgress
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4118,6 +4121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  progressBarController: {fileID: 1633671037}
 --- !u!1 &1865323702
 GameObject:
   m_ObjectHideFlags: 0
@@ -4339,13 +4343,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1633671037}
         m_TargetAssemblyTypeName: ProgressBarController, Assembly-CSharp
-        m_MethodName: ChangeProgress
+        m_MethodName: DecreaseProgress
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: -50
+          m_FloatArgument: 50
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -4472,13 +4476,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1633671037}
         m_TargetAssemblyTypeName: ProgressBarController, Assembly-CSharp
-        m_MethodName: ChangeProgress
+        m_MethodName: DecreaseProgress
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: -10
+          m_FloatArgument: 10
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2

@@ -6,6 +6,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
     private Canvas canvas;
+    private Transform originalParent;
 
     void Awake()
     {
@@ -16,21 +17,43 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        // Reduziert die Alpha und deaktiviert Interaktionen während des Drags
+        // Falls das Item auf dem Amboss liegt, setze isOnAnvil auf false,
+        // da es jetzt aus dem Amboss genommen wird
+        MaterialItem material = GetComponent<MaterialItem>();
+        if (material != null && material.isOnAnvil)
+        {
+            material.isOnAnvil = false;
+            Debug.Log($"{gameObject.name} wurde aus dem Amboss entfernt!");
+        }
+
+        // Speichere den ursprünglichen Parent, um ihn später wiederherzustellen
+        originalParent = transform.parent;
+        // Reparenting: Das Item wird an den Canvas angehängt
+        transform.SetParent(canvas.transform);
+
         canvasGroup.alpha = 0.6f;
         canvasGroup.blocksRaycasts = false;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        // Bewegt das Objekt mit der Maus
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        // Setzt die Alpha zurück und aktiviert Interaktionen
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
+
+        // Hier kannst du das Item wieder einem passenden Parent zuordnen,
+        // falls es über einer gültigen Dropzone losgelassen wurde.
+        if (eventData.pointerEnter != null)
+        {
+            transform.SetParent(eventData.pointerEnter.transform);
+        }
+        else
+        {
+            transform.SetParent(originalParent);
+        }
     }
 }
