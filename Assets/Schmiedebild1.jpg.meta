@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Schmiedebild1_0: -226004276346098823
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
